@@ -31,6 +31,7 @@ export interface IDota2ObserverStateEvent {
 export interface IDota2BaseState {
   buildings: IBuildings | null;
   provider: IProvider | null;
+  events: IEvent[] | null;
 }
 
 export interface IDota2State extends IDota2BaseState {
@@ -205,4 +206,31 @@ export interface IPickBan {
 export interface IWearbleItem {
   wearable: number;
   style?: number;
+}
+
+export enum EventType {
+  AegisPickedUp = 'aegis_picked_up',
+  BountyRunePickedUp = 'bounty_rune_pickup',
+  RoshanKilled = 'roshan_killed',
+  AegisDenied = 'aegis_denied',
+  Tip = 'tip',
+  BountyPickup = 'bounty_rune_pickup',
+  CourierKilled = 'courier_killed',
+}
+
+export interface IEvent {
+  gameTime: number;
+  eventType: EventType;
+  playerId: number;
+  team: TeamType;
+  bountyValue: number;
+  teamGold: number;
+  killedByTeam: TeamType;
+  killerPlayerId: number;
+  snatched: boolean;
+  senderPlayerId: number;
+  receiverPlayerId: number;
+  tipAmount: number;
+  courierTeam: TeamType;
+  owningPlayerId: number;
 }

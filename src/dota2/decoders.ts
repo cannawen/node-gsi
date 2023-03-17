@@ -2,6 +2,7 @@ import {
   IAbility,
   IBuilding,
   IDraft,
+  IEvent,
   IHero,
   IItem,
   IItemContainer,
@@ -257,4 +258,29 @@ export function decodeWearable(rawWearable: any) {
     iWearableList.push(item);
   });
   return iWearableList as IWearbleItem[];
+}
+
+export function decodeEvents(rawEvents: Array<any>) {
+  return rawEvents.map((event) => {
+    return { 
+      gameTime: getAttr(event, 'game_time'),
+      eventType: getAttr(event, 'event_type'), 
+
+      playerId: getAttr(event, 'player_id'),
+      team: getAttr(event, 'team'),
+      bountyValue: getAttr(event, 'bounty_value'),
+      teamGold: getAttr(event, 'team_gold'),
+      
+      killedByTeam: getAttr(event, 'killed_by_team'),
+      killerPlayerId: getAttr(event, 'killer_player_id'),
+      snatched: getAttr(event, 'snatched'),
+      
+      senderPlayerId: getAttr(event, 'sender_player_id'),
+      receiverPlayerId: getAttr(event, 'receiver_player_id'),
+      tipAmount: getAttr(event, 'tip_amount'),
+
+      courierTeam: getAttr(event, 'courier_team'),
+      owningPlayerId: getAttr(event, 'owning_player_id'),
+    } as IEvent
+  });
 }
