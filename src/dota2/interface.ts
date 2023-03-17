@@ -177,6 +177,8 @@ export interface IAbility {
 export interface IItemContainer {
   slot: Array<IItem | null>;
   stash: Array<IItem | null>;
+  teleport: IItem | null;
+  neutral: IItem | null;
 }
 
 export interface IItem {

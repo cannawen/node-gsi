@@ -187,6 +187,8 @@ export function decodeItems(rawItems: any) {
   const items = {
     slot: Array<IItem>(),
     stash: Array<IItem>(),
+    teleport: null,
+    neutral: null,
   } as IItemContainer;
   for (const [itemCode, rawItem] of Object.entries(rawItems)) {
     const itemSlot = Number(itemCode.split(/slot|stash/).slice(-1));
@@ -194,6 +196,10 @@ export function decodeItems(rawItems: any) {
       items.slot[itemSlot] = decodeItem(rawItem);
     } else if (itemCode.startsWith('stash')) {
       items.stash[itemSlot] = decodeItem(rawItem);
+    } else if(itemCode === "teleport0") {
+      items.teleport = decodeItem(rawItem);
+    } else if (itemCode === "neutral0") {
+      items.neutral = decodeItem(rawItem);
     }
   }
   return items;
