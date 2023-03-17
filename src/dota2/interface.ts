@@ -223,16 +223,16 @@ export enum EventType {
 export interface IEvent {
   gameTime: number;
   eventType: EventType;
-  playerId: number;
-  team: TeamType;
-  bountyValue: number;
-  teamGold: number;
-  killedByTeam: TeamType;
-  killerPlayerId: number;
-  snatched: boolean;
-  senderPlayerId: number;
-  receiverPlayerId: number;
-  tipAmount: number;
-  courierTeam: TeamType;
-  owningPlayerId: number;
+  playerId: number | null;
+  team: TeamType | null;
+  bountyValue: number | null;
+  teamGold: number | null;
+  killedByTeam: TeamType | null;
+  killerPlayerId: number | null;
+  snatched: boolean | null;
+  senderPlayerId: number | null;
+  receiverPlayerId: number | null;
+  tipAmount: number | null;
+  courierTeam: TeamType | null;
+  owningPlayerId: number | null;
 }
