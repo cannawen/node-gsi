@@ -291,3 +291,7 @@ export function decodeEvents(rawEvents: Array<any>) {
     } as IEvent;
   });
 }
+
+export function decodeAuth(auth: any) {
+  return getAttr(auth, 'token');
+}

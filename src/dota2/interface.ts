@@ -21,11 +21,13 @@ export enum Dota2GameState {
 export interface IDota2StateEvent {
   state: IDota2State;
   changes: IDota2State;
+  auth: string | null;
 }
 
 export interface IDota2ObserverStateEvent {
   state: IDota2ObserverState;
   changes: IDota2ObserverState;
+  auth: string | null;
 }
 
 export interface IDota2BaseState {

@@ -10,7 +10,6 @@ import {
   IProvider,
   IWearbleItem,
   TeamType,
-  IEvent,
 } from './interface';
 
 import {
@@ -23,6 +22,7 @@ import {
   decodePlayer,
   decodeWearable,
   decodeEvents,
+  decodeAuth,
 } from './decoders';
 import { checkKey } from './utils';
 
@@ -45,18 +45,29 @@ export class Dota2GSIServer extends GSIServer {
     const observerMode = this.isObserverMode(rawState);
     const state = this.parseState(rawState, observerMode);
     const changes = this.parseState(rawState.previously, observerMode);
+    const auth = this.parseAuth(rawState);
 
     if (observerMode) {
       this.events.emit(Dota2Event.Dota2ObserverState, {
         state,
         changes,
+        auth,
       } as IDota2ObserverStateEvent);
     } else {
       this.events.emit(Dota2Event.Dota2State, {
         state,
         changes,
+        auth,
       } as IDota2StateEvent);
     }
+  }
+
+  private parseAuth(rawState: any): string {
+    let auth = null;
+    if (checkKey(rawState, 'auth')) {
+      auth = decodeAuth(rawState['auth']);
+    }
+    return auth;
   }
 
   private parseState(rawState: any, observerMode: boolean): any {
