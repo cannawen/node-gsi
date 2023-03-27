@@ -70,6 +70,7 @@ export abstract class GSIServer {
     }*/
     return new Promise(resolve => {
       const chunks: any[] = [];
+      req.setEncoding('utf8');
       req.on('data', chunk => {
         chunks.push(chunk);
       });
