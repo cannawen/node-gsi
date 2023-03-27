@@ -70,14 +70,11 @@ export abstract class GSIServer {
     }*/
     return new Promise(resolve => {
       const chunks: Buffer[] = [];
-      req.setEncoding('utf8');
       req.on('data', chunk => {
         chunks.push(chunk);
-        console.log('Partial body: ', chunk.toString('utf8'));
       });
       req.on('end', () => {
         const content = Buffer.concat(chunks);
-        console.log('Full body: ', content.toString('utf8'));
         try {
           const rawState = JSON.parse(content.toString('utf8'));
           this.events.emit(BasicEvent.RawState, rawState);
