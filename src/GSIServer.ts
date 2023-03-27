@@ -65,21 +65,28 @@ export abstract class GSIServer {
   }
 
   private async parsePOST(req: http.IncomingMessage): Promise<[number, string]> {
-    const chunks = [];
-    for await (const chunk of req) {
+    /*for await (const chunk of req) {
       chunks.push(chunk);
-    }
-    const content = chunks.join();
-    try {
-      const rawState = JSON.parse(content);
-      this.events.emit(BasicEvent.RawState, rawState);
-      this.feedState(rawState);
-      return [200, ''];
-    } catch (e) {
-      if (this.debug) {
-        console.trace(e);
-      }
-      return [500, `Invalid JSON in request body: '${e}'.\n`];
-    }
+    }*/
+    return new Promise(resolve => {
+      const chunks: any[] = [];
+      req.on('data', chunk => {
+        chunks.push(chunk);
+      });
+      req.on('end', () => {
+        const content = chunks.join();
+        try {
+          const rawState = JSON.parse(content);
+          this.events.emit(BasicEvent.RawState, rawState);
+          this.feedState(rawState);
+          resolve([200, '']);
+        } catch (e) {
+          if (this.debug) {
+            console.trace(e);
+          }
+          resolve([500, `Invalid JSON in request body: '${e}'.\n`]);
+        }
+      });
+    });
   }
 }
