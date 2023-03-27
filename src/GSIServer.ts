@@ -65,13 +65,13 @@ export abstract class GSIServer {
   }
 
   private async parsePOST(req: http.IncomingMessage): Promise<[number, string]> {
-    const chunks = [];
+    const chunks: Buffer[] = [];
     for await (const chunk of req) {
       chunks.push(chunk);
     }
-    const content = chunks.join();
+    const content = Buffer.concat(chunks);
     try {
-      const rawState = JSON.parse(content);
+      const rawState = JSON.parse(content.toString('utf8'));
       this.events.emit(BasicEvent.RawState, rawState);
       this.feedState(rawState);
       return [200, ''];
