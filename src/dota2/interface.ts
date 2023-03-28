@@ -214,11 +214,10 @@ export interface IWearbleItem {
 
 export enum EventType {
   AegisPickedUp = 'aegis_picked_up',
-  BountyRunePickedUp = 'bounty_rune_pickup',
+  BountyRunePickup = 'bounty_rune_pickup',
   RoshanKilled = 'roshan_killed',
   AegisDenied = 'aegis_denied',
   Tip = 'tip',
-  BountyPickup = 'bounty_rune_pickup',
   CourierKilled = 'courier_killed',
 }
 
