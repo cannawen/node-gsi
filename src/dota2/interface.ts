@@ -1,14 +1,14 @@
-export enum TeamType {
+export const enum TeamType {
   Dire = 'dire',
   Radiant = 'radiant',
 }
 
-export enum Dota2Event {
+export const enum Dota2Event {
   Dota2State = 'dota2-state',
   Dota2ObserverState = 'dota2-observer-state',
 }
 
-export enum Dota2GameState {
+export const enum Dota2GameState {
   Init = 'DOTA_GAMERULES_STATE_INIT',
   HeroSelection = 'DOTA_GAMERULES_STATE_HERO_SELECTION',
   StrategyTime = 'DOTA_GAMERULES_STATE_STRATEGY_TIME',
@@ -16,6 +16,15 @@ export enum Dota2GameState {
   PreGame = 'DOTA_GAMERULES_STATE_PRE_GAME',
   GameInProgress = 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS',
   PostGame = 'DOTA_GAMERULES_STATE_POST_GAME',
+}
+
+export const enum EventType {
+  AegisPickedUp = 'aegis_picked_up',
+  BountyRunePickup = 'bounty_rune_pickup',
+  RoshanKilled = 'roshan_killed',
+  AegisDenied = 'aegis_denied',
+  Tip = 'tip',
+  CourierKilled = 'courier_killed',
 }
 
 export interface IDota2StateEvent {
@@ -210,15 +219,6 @@ export interface IPickBan {
 export interface IWearbleItem {
   wearable: number;
   style?: number;
-}
-
-export enum EventType {
-  AegisPickedUp = 'aegis_picked_up',
-  BountyRunePickup = 'bounty_rune_pickup',
-  RoshanKilled = 'roshan_killed',
-  AegisDenied = 'aegis_denied',
-  Tip = 'tip',
-  CourierKilled = 'courier_killed',
 }
 
 export interface IEvent {

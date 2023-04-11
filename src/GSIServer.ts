@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import * as http from 'http';
 
-export enum BasicEvent {
+export const enum BasicEvent {
   RawState = 'raw-state',
 }
 
