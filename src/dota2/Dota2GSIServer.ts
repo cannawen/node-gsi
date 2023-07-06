@@ -19,6 +19,7 @@ import {
   decodeHero,
   decodeItems,
   decodeMap,
+  decodeMinimap,
   decodePlayer,
   decodeWearable,
   decodeEvents,
@@ -89,6 +90,11 @@ export class Dota2GSIServer extends GSIServer {
     let map = null;
     if (checkKey(rawState, 'map')) {
       map = decodeMap(rawState['map'], observerMode);
+    }
+
+    let minimap = null;
+    if (checkKey(rawState, 'minimap')) {
+      minimap = decodeMinimap(rawState['minimap']);
     }
 
     let player = null;
@@ -171,6 +177,7 @@ export class Dota2GSIServer extends GSIServer {
       buildings,
       provider,
       map,
+      minimap,
       player,
       hero,
       abilities,

@@ -17,6 +17,7 @@ export {
   IItemContainer,
   IMap,
   IMapObserver,
+  IMinimapElement,
   IPickBan,
   IPlayer,
   IPlayerKill,

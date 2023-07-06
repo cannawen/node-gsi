@@ -43,6 +43,7 @@ export interface IDota2BaseState {
   buildings: IBuildings | null;
   provider: IProvider | null;
   events: IEvent[] | null;
+  minimap: IMinimapElement[] | null;
 }
 
 export interface IDota2State extends IDota2BaseState {
@@ -100,6 +101,10 @@ export interface IMapObserver extends IMap {
   direWardPurchaseCooldown: number;
   roshanState: string;
   roshanStateEndSeconds: number;
+}
+
+export interface IMinimapElement {
+  unitname: string;
 }
 
 export interface IPlayer {

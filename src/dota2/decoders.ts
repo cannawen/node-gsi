@@ -8,6 +8,7 @@ import {
   IItemContainer,
   IMap,
   IMapObserver,
+  IMinimapElement,
   IPickBan,
   IPlayer,
   IPlayerKill,
@@ -163,6 +164,15 @@ export function decodeMap(rawMap: any, observerMode: boolean) {
   } else {
     return map as IMap;
   }
+}
+
+export function decodeMinimap(rawMinimap: any) {
+  return Object.values(rawMinimap).map(
+    value =>
+      ({
+        unitname: getAttr(value, 'unitname'),
+      } as IMinimapElement),
+  );
 }
 
 export function decodeAblities(rawAbilities: any) {
