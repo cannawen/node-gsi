@@ -105,6 +105,9 @@ export interface IMapObserver extends IMap {
 
 export interface IMinimapElement {
   unitname: string;
+  xpos: number;
+  ypos: number;
+  team: TeamType | null;
 }
 
 export interface IPlayer {

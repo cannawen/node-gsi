@@ -14,6 +14,7 @@ import {
   IPlayerKill,
   IPlayerObserver,
   IWearbleItem,
+  TeamType,
 } from './interface';
 
 import { getTeam } from './utils';
@@ -166,11 +167,24 @@ export function decodeMap(rawMap: any, observerMode: boolean) {
   }
 }
 
+function team(teamNum: number) {
+  if (teamNum === 2) {
+    return TeamType.Radiant;
+  }
+  if (teamNum === 3) {
+    return TeamType.Dire;
+  }
+  return null;
+}
+
 export function decodeMinimap(rawMinimap: any) {
   return Object.values(rawMinimap).map(
     value =>
       ({
         unitname: getAttr(value, 'unitname'),
+        xpos: getAttr(value, 'xpos'),
+        ypos: getAttr(value, 'ypos'),
+        team: team(getAttr(value, 'team')),
       } as IMinimapElement),
   );
 }
