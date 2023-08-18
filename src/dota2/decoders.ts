@@ -94,11 +94,19 @@ export function decodeItem(rawItem: any) {
       purchaser: rawItem['purchaser'],
       passive: rawItem['passive'],
     } as IItem;
-    ['can_cast', 'cooldown', 'charges'].forEach(prop => {
-      if (prop in rawItem) {
-        (item as any)[prop] = rawItem[prop];
-      }
-    });
+    if (rawItem['can_cast']) {
+      item['canCast'] = rawItem['can_cast'];
+    }
+    if (rawItem['cooldown']) {
+      item['cooldown'] = rawItem['cooldown'];
+    }
+    if (rawItem['charges']) {
+      item['charges'] = rawItem['charges'];
+    }
+    if (rawItem['contains_rune']) {
+      item['containsRune'] = rawItem['contains_rune'];
+    }
+
     return item;
   }
 }
